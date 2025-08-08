@@ -17,6 +17,7 @@ const pool = new pg.Pool({
     port: process.env.DB_PORT,
 });
 
+// console.log("checking");
 const port = 4000;
 
 app.use(express.json());
