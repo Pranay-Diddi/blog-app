@@ -14,13 +14,10 @@ const { fileURLToPath } = require("url");
 
 
 const pool = new pg.Pool({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
-    port: process.env.DB_PORT,
-    ssl: { rejectUnauthorized: false },
+    connectionString: process.env.DATABASE_URL, // your full internal URL
+    ssl: { rejectUnauthorized: false }
 });
+
 
 // console.log("checking");
 const port = process.env.PORT || 4000;
