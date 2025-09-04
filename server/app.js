@@ -275,6 +275,22 @@ app.get("/", (req, res) => {
   res.send("API is working!");
 });
 
+const fs = require('fs');
+
+app.post('/importDB', async (req, res) => {
+  const client = await pool.connect();
+  try {
+    const sql = fs.readFileSync('blogapp.sql', 'utf8');
+    await client.query(sql);
+    res.status(200).send('Database imported successfully!');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error importing database');
+  } finally {
+    client.release();
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
