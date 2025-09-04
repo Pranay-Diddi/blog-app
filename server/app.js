@@ -8,6 +8,10 @@ const bcrypt = require("bcrypt");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const SECRET_KEY = process.env.SECRET_KEY;
+const path = require("path");
+const { fileURLToPath } = require("url");
+
+
 
 const pool = new pg.Pool({
     user: process.env.DB_USER,
@@ -15,10 +19,11 @@ const pool = new pg.Pool({
     database: process.env.DB_NAME,
     password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT,
+    ssl: { rejectUnauthorized: false },
 });
 
 // console.log("checking");
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 app.use(express.json());
 app.use(cors());
@@ -270,7 +275,6 @@ app.put("/like/:postId", async (req, res) => {
 
 
 
-
 app.listen(port, () => {
-    console.log(`Server running in http://localhost:${port}`);
+  console.log(`Server running at http://localhost:${port}`);
 });
