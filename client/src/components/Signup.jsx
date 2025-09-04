@@ -21,7 +21,10 @@ const SignUp = () => {
     // You'll handle API call here
     // console.log("Sign Up Data:", formData);
     try {
-      const res = await axios.post("http://localhost:4000/signup", formData);
+      const res = await axios.post(
+        "https://blog-server-liry.onrender.com/signup",
+        formData
+      );
       alert(res.data.message);
       navigate("/login");
     } catch (err) {

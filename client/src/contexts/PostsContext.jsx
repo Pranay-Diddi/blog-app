@@ -47,7 +47,7 @@ export const PostsContextProvider = ({ children }) => {
       // First, send to backend
       const userId = localStorage.getItem("userId");
       await axios.post(
-        "http://localhost:4000/addPost",
+        "https://blog-server-liry.onrender.com/addPost",
         post,
         {
           headers: {
@@ -69,7 +69,7 @@ export const PostsContextProvider = ({ children }) => {
     const userId = localStorage.getItem("userId");
 
     try {
-      await axios.delete("http://localhost:4000/deletePost", {
+      await axios.delete("https://blog-server-liry.onrender.com/deletePost", {
         headers: {
           userid: userId,
         },
@@ -92,11 +92,15 @@ export const PostsContextProvider = ({ children }) => {
   const editPost = async (updatedPost) => {
     try {
       const userId = localStorage.getItem("userId");
-      await axios.post("http://localhost:4000/editPost", updatedPost, {
-        headers: {
-          userid: userId,
-        },
-      });
+      await axios.post(
+        "https://blog-server-liry.onrender.com/editPost",
+        updatedPost,
+        {
+          headers: {
+            userid: userId,
+          },
+        }
+      );
       dispatchCurrentPosts({ type: "EDIT", payload: updatedPost });
     } catch (err) {
       if (err.response && err.response.status === 403) {

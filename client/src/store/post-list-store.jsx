@@ -7,7 +7,9 @@ const usePostStore = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/posts");
+        const res = await axios.get(
+          "https://blog-server-liry.onrender.com/posts"
+        );
         const formattedPosts = res.data.map((post) => ({
           ...post,
           // reactions: Math.floor(Math.random() * 10),

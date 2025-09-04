@@ -16,7 +16,10 @@ export default function Login() {
       // You'll handle API call here
       // console.log("Sign Up Data:", formData);
       try {
-        const res = await axios.post("http://localhost:4000/login", formData);
+        const res = await axios.post(
+          "https://blog-server-liry.onrender.com/login",
+          formData
+        );
         // console.log(res);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("username", res.data.user.name);

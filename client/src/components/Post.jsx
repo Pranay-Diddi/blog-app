@@ -60,9 +60,12 @@ const Post = ({ post }) => {
     }
 
     try {
-      const res = await axios.put(`http://localhost:4000/like/${post.id}`, {
-        userid,
-      });
+      const res = await axios.put(
+        `https://blog-server-liry.onrender.com/like/${post.id}`,
+        {
+          userid,
+        }
+      );
 
       if (res.data.message === "You've liked the post!!") {
         setLikes(res.data.likes);

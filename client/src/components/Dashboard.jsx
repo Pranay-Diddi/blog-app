@@ -7,9 +7,12 @@ export default function Dashboard() {
   const [userposts, setUserPosts] = useState([]);
   const getUserPosts = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/userposts", {
-        params: { userid: userid },
-      });
+      const response = await axios.get(
+        "https://blog-server-liry.onrender.com/userposts",
+        {
+          params: { userid: userid },
+        }
+      );
       setUserPosts(response.data.userposts); // Make sure to access `.data`
       console.log("Fetched posts:", response.data.userposts);
     } catch (error) {
