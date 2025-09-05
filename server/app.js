@@ -27,15 +27,29 @@ app.use(cors());
 
 app.get("/users", async (req, res) => {
     try {
-        const query = "SELECT * from USERS";
+        const query = "SELECT * from users";
         const users = await pool.query(query);
         // console.log(users);
+        console.log("Users fetched:", users.rows);
 
         res.json(users.rows);
     } catch(err) {
         console.log(err);
+        res.status(500).json({ error: err.message });
     }
 });
+
+app.get("/checkDB", async (req, res) => {
+    try {
+        const result = await pool.query("SELECT current_database(), current_user, current_schema()");
+        console.log(result.rows);
+        res.json(result.rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: err.message });
+    }
+});
+
 
 app.get("/posts", async(req, res) => {
     try {
